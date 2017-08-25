@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack"
+    "start": "webpack --watch",
+    "server": "static build"
   },
   "author": "Alexander Shushunov",
   "license": "ISC",
   "devDependencies": {
     "html-webpack-plugin": "^2.30.1",
+    "node-static": "^0.7.9",
     "webpack": "^3.5.5"
   }
 }
