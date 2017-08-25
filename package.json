@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --watch",
+    "start": "webpack-dev-server",
+    "build": "webpack",
     "server": "static build"
   },
   "author": "Alexander Shushunov",
@@ -14,6 +15,7 @@
     "node-static": "^0.7.9",
     "pug": "^2.0.0-rc.3",
     "pug-loader": "^2.3.0",
-    "webpack": "^3.5.5"
+    "webpack": "^3.5.5",
+    "webpack-dev-server": "^2.7.1"
   }
 }
