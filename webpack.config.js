@@ -2,19 +2,30 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const PATHS = {
-    source: path.join(__dirname, 'src'),
-    build: path.join(__dirname, 'build')
+    source: path.resolve(__dirname, 'src'),
+    build: path.resolve(__dirname, 'build')
 };
 
 module.exports = {
-    entry: PATHS.source + '/index.js',
+    entry: path.resolve(PATHS.source, 'index.js'),
     output: {
         path: PATHS.build,
         filename: '[name].js'
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Webpack app'
+            template: path.resolve(PATHS.source, 'index.pug')
         })
-    ]
+    ],
+    module: {
+        rules: [
+            {
+                test: /\.pug$/,
+                loader: 'pug-loader',
+                options: {
+                    pretty: true
+                }
+            }
+        ]
+    }
 };
