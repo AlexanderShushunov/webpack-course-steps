@@ -6,7 +6,7 @@ const PATHS = {
     build: path.resolve(__dirname, 'build')
 };
 
-module.exports = {
+const common = {
     entry: {
         'index': path.resolve(PATHS.source, 'pages', 'index', 'index.js'),
         'other': path.resolve(PATHS.source, 'pages', 'other', 'other.js')
@@ -38,7 +38,19 @@ module.exports = {
             }
         ]
     },
+};
+
+const development = {
     devServer: {
         open: true
+    }
+};
+
+module.exports = function (env) {
+    if (env === 'production') {
+        return common;
+    }
+    if (env === 'development') {
+        return Object.assign({}, common, development);
     }
 };
