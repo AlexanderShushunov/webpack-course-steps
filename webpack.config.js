@@ -5,6 +5,7 @@ const pug = require('./webpack/pug');
 const devserver = require('./webpack/devserver');
 const sass = require('./webpack/sass');
 const css = require('./webpack/css');
+const extractCss = require('./webpack/extract-css');
 
 const PATHS = {
     source: path.resolve(__dirname, 'src'),
@@ -19,7 +20,7 @@ const common = merge(
         },
         output: {
             path: PATHS.build,
-            filename: '[name].js'
+            filename: 'js/[name].js'
         },
         plugins: [
             new HtmlWebpackPlugin({
@@ -34,16 +35,22 @@ const common = merge(
             })
         ]
     },
-    pug(),
-    sass(),
-    css()
+    pug()
 );
 
 module.exports = function (env) {
     if (env === 'production') {
-        return common;
+        return merge(
+            common,
+            extractCss()
+        );
     }
     if (env === 'development') {
-        return merge(common, devserver());
+        return merge(
+            common,
+            devserver(),
+            sass(),
+            css()
+        );
     }
 };
