@@ -56,7 +56,10 @@ module.exports = function (env) {
             common,
             devserver(),
             sass(),
-            css()
+            css(),
+            {
+                devtool: "source-map"
+            }
         );
     }
 };
