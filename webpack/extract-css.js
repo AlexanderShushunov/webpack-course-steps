@@ -1,5 +1,12 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const tunedCssLoader = {
+    loader: 'css-loader',
+    options: {
+        minimize: true
+    }
+};
+
 module.exports = function () {
     return {
         module: {
@@ -8,14 +15,14 @@ module.exports = function () {
                     test: /\.scss$/,
                     use: ExtractTextPlugin.extract({
                         fallback: 'style-loader',
-                        use: ['css-loader', 'sass-loader']
+                        use: [tunedCssLoader, 'sass-loader']
                     })
                 },
                 {
                     test: /\.css$/,
                     use: ExtractTextPlugin.extract({
                         fallback: 'style-loader',
-                        use: 'css-loader'
+                        use: tunedCssLoader
                     })
                 }
             ]
