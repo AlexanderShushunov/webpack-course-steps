@@ -1,3 +1,11 @@
 h1 {
   color: red;
 }
+
+$logo-size: 100px;
+.logo {
+  background-image: url("webpack-logo.svg");
+  background-size: $logo-size $logo-size;
+  width: $logo-size;
+  height: $logo-size;
+}
